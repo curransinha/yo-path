@@ -176,7 +176,7 @@ app.get('/path', function(req, res) {
 				user: user
                         });
 		} else {
-			res.render('index', {
+			res.render('layout', {
 				main: "",
 				start: "",
 				end: "",
