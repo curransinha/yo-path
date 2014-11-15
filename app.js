@@ -45,6 +45,8 @@ app.get('/yo-start', function(req, res) {
 		times[user][0] = new Date();
 	}
 	
+	console.log(routes);
+	
 	res.writeHead(200, {"Content-type" : "text/plain"});
 	res.write(JSON.stringify(routes));
 	res.write(JSON.stringify(times));
