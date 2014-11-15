@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Yo Path</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #header-holder { margin: 0; padding: 0;
+			font-size: 15px;
+			background: #8E44AD;
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			text-align: center;
+			padding: 10px;
+			color: #333;
+			list-style-type: none;
+			-webkit-font-smoothing: antialiased;
+			text-rendering:optimizelegibility;}
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+		function initialize() {
+		var mainArray = {}
+		var maxLat = -1000
+		var maxLong = -1000
+		var minLat = 1000
+		var minLong = 1000
+		for (var i=0; i<(mainArray.length)-1; i++){
+			if(mainArray[i][0]<minLat)
+				minLat = mainArray[i][0]
+			 if(mainArray[i][0]>maxLat)
+				maxLat = mainArray[i][0]
+			if(mainArray[i][1]<minLong)
+				minLong = mainArray[i][1]
+			if(mainArray[i][1]>maxLong)
+				maxLong = mainArray[i][1]
+		}
+		var centerLat = ((maxLat + minLat)/2)
+		var centerLong = ((maxLong + minLong)/2)
+		console.log(maxLat)
+		console.log(maxLong);
+		console.log(minLat);
+		console.log(minLong);
+		var myLatlng = new google.maps.LatLng(centerLat,centerLong);
+		  var mapOptions = {
+		    zoom: 5,
+		    center: myLatlng
+		  }
+		 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		
+		var markerArray = []
+		var endIndex = mainArray.length-1
+		var startPos = new google.maps.LatLng(mainArray[0][0],mainArray[0][1]);
+		var endPos = new google.maps.LatLng(mainArray[endIndex][0],mainArray[endIndex][1]);
+
+		markerArray.push(startPos);
+		new google.maps.Marker({
+		      position: startPos,
+		      map: map,
+		      title: 'Hello World!'
+		  });
+		for (var i=1; i<(mainArray.length)-2; i++){
+			if(mainArray[i][0]<minLat)
+				minLat = mainArray[i][0]
+			else if(mainArray[i][0]>maxLat)
+				maxLat = mainArray[i][0]
+			if(mainArray[i][1]<minLong)
+				minLat = mainArray[i][1]
+			else if(mainArray[i][1]>maxLong)
+				maxLat = mainArray[i][1]
+			var location = new google.maps.LatLng(mainArray[i][0],mainArray[i][1])
+			markerArray.push(location)
+			new google.maps.Marker({
+		      position: location,
+		      map: map,
+		      title: 'Hello World!'
+		  });
+		}
+		markerArray.push(endPos)
+		new google.maps.Marker({
+		      position: endPos,
+		      map: map,
+		      title: 'Hello World!'
+		  });
+
+		  var flightPlanCoordinates = markerArray
+	  	var flightPath = new google.maps.Polyline({
+	    path: flightPlanCoordinates,
+	    geodesic: true,
+	    strokeColor: '#FF0000',
+	    strokeOpacity: 1.0,
+	    strokeWeight: 2
+	  });
+
+  		flightPath.setMap(map);
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+  	<div id = "header-holder">
+  	<h1>Yo Path</h1>
+  		<p>Start Time: {{start}}</p>
+  		<p>End Time: {{end}}</p>
+  		
+
+  	</div>
+    <div id="map-canvas"></div>
+  </body>
+</html>
+<!-- <!DOCTYPE html>
+<html>
+	<head>
+		<title>Yo Path</title>
+		<style type="text/css">
+			#footer{ background: black;color: white;}
+			#header-holder { margin: 0; padding: 0;
+			font-size: 20px;
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-weight: lighter;
+			text-align: center;
+			padding: 40px;
+			color: #333;
+			-webkit-font-smoothing: antialiased;
+			text-rendering:optimizelegibility;}
+      		#map-canvas { height: 100%; margin: 0; padding: 0;}
+    	</style>
+    	<script type="text/javascript"
+      		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm4DOA441KhXi2CwkovfChZn7JnPuc4vQ">
+    	</script>
+    	<script type="text/javascript">
+	    	var map;
+			function initialize() {
+	  		var mapOptions = {
+			    zoom: 8,
+			    center: new google.maps.LatLng(-34.397, 150.644)
+			  };
+			map = new google.maps.Map(document.getElementById('map-canvas'),
+			      mapOptions);
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+     	 </script>
+	</head>
+
+	<body>
+		<div id="map-canvas">
+		</div>
+
+		<!-- <div id="header-holder">
+			<h1 id="head">Yo Path</h1>
+			<ul>
+				<li>Start:{{startTime}}</li>
+				<li>End:{{endTime}}</li>
+				<li>Distance:{{distance}}</li>
+			</ul>
+		</div>
+		
+			
+
+		<div id="footer" class="block">
+			&copy;2014 Curran and Leon 
+		</div>
+ 
+
+	</body>
+</html> -->
