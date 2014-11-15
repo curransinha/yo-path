@@ -160,14 +160,14 @@ app.get('/path', function(req, res) {
 	}
 	var pid = req.query.pid;
 
-	db.collection('paths').findOne({ "_id" : pid }, function(err, result) {
+	db.collection('paths').findOne({ _id : pid }, function(err, result) {
 		if (err) {
 			console.log(err);
 			res.writeHead(200, {"Content-type" : "text/plain"});
 			res.write("No result found\n");
 			res.end();
 			return;
-		} else {
+		} else if (result != null) {
 			res.render('index', {
 				main: result.route,
 				start: result.time[0],
