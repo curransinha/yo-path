@@ -136,15 +136,15 @@ app.get('/yo-end', function(req, res) {
 				request.post(url, { form:
 					{ 'api_token': 'fa5016ff-d499-4f25-be79-448c74832a94', 'username': 'endpath', 'link':'http://yo-path.herokuapp.com/path/'+seq}}), function(err, response, body) {
 		}
-	}
+			}
 				
 
-				res.writeHead(200, {"Content-type" : "text/plain"});
-				res.write(JSON.stringify(routes));
-				res.write(JSON.stringify(times));
-				res.write('{"status": "200"}');
-				res.end();
-			}
+			res.writeHead(200, {"Content-type" : "text/plain"});
+			res.write(JSON.stringify(routes));
+			res.write(JSON.stringify(times));
+			res.write('{"status": "200"}');
+			res.end();
+			
 		});
 	});
 
