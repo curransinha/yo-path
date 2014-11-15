@@ -159,8 +159,8 @@ app.get('/path', function(req, res) {
 		return;
 	}
 	var pid = req.query.pid;
-
-	db.collection('paths').findOne({ "_id" : pid }, function(err, result) {
+	console.log("trying pid = " + pid)
+	db.collection('paths').findOne({ _id: parseInt(pid) }, function(err, result) {
 		console.log(result);
 		if (err) {
 			console.log(err);
@@ -169,15 +169,15 @@ app.get('/path', function(req, res) {
 			res.end();
 			return;
 		} else if (result != null) {
-			res.render('index', {
-				main: result.route,
+			res.render('layout', {
+				main: "["+result.route+"]",
 				start: result.time[0],
 				end: result.time[1],
-				user: user
+				user: result.user
                         });
 		} else {
 			res.render('layout', {
-				main: "",
+				main: "[]",
 				start: "",
 				end: "",
 				user: "" 
