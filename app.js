@@ -90,10 +90,14 @@ app.get('/yo-end', function(req, res) {
 	
 	console.log("Yo-End called by user " + user + " at location " + "[" + latitude +", " + longitude + "]");
 	
-	if (routes[user] != null) {
-		routes[user].push([latitude, longitude]);
-		times[user][1] = new Date();
+	if (routes[user] == null) {
+		res.end();
+		return;
 	}
+	
+	routes[user].push([latitude, longitude]);
+	times[user][1] = new Date();
+	
 
 	// Create a JSON object, store it in MongoDB 
 	function getNextSequence(name, callback) {
@@ -169,10 +173,37 @@ app.get('/path', function(req, res) {
 			res.end();
 			return;
 		} else if (result != null) {
+			var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+
+			var suffix = (result.time[0].getHours() >= 12) ? 'pm' : 'am';
+
+        		var hours0 = (result.time[0].getHours() > 12) ? result.time[0].getHours()-12 : result.time[0].getHours();
+                	hours0 = (hours0 == '00') ? 12 : hours0;
+        		
+			var hours1 = (result.time[1].getHours() > 12) ? result.time[1].getHours()-12 : result.time[1].getHours();
+                	hours1 = (hours1 == '00') ? 12 : hours1;
+    
+                	var start_t = hours0 + ":" + (result.time[0].getMinutes()<10? "0" : "") + result.time[0].getMinutes() + suffix + " on " + months[result.time[0].getMonth()] + " " + result.time[0].getDate() + ", " + result.time[0].getFullYear()
+			var end_t = hours1 + ":" + (result.time[1].getMinutes()<10? "0" : "") + result.time[0].getMinutes() + suffix + " on " + months[result.time[1].getMonth()] + " " + result.time[1].getDate() + ", " + result.time[1].getFullYear()
+
+			var elapsed_t = new Date(result.time[1] - result.time[0]);
+			//elapsed_t = elapsed_t.get	
+			var edays=Math.floor(elapsed_t / 86400);
+			// After deducting the days calculate the number of hours left
+			var ehours = Math.floor((elapsed_t - (edays * 86400))/3600)
+			// After days and hours , how many minutes are left
+			var eminutes = Math.floor((elapsed_t - (edays * 86400 ) - (ehours *3600 ))/60)
+			// Finally how many seconds left after removing days, hours and minutes.
+			var esecs = Math.floor((elapsed_t - (edays * 86400 ) - (ehours *3600 ) - (eminutes*60)))
+
+			elapsed_t = (edays>0 ? (edays + " days, ") : "") + (ehours>0 ? (ehours + " hours, ") : "") + eminutes + " minutes " + " and " + esecs + " seconds";
+
 			res.render('layout', {
+				pid: result._id,
 				main: "["+result.route+"]",
-				start: result.time[0],
-				end: result.time[1],
+				start: start_t,
+				end: end_t,
+				elapsed: elapsed_t,
 				user: result.user
                         });
 		} else {
