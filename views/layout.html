@@ -39,8 +39,8 @@
 			if(mainArray[i]>maxLong)
 				maxLong = mainArray[i+1]
 		}
-		var centerLat = ((maxLat + minLat)/2)
-		var centerLong = ((maxLong + minLong)/2)
+		var centerLat = mainArray[0]//((maxLat + minLat)/2)
+		var centerLong = mainArray[1]//((maxLong + minLong)/2)
 		console.log(maxLat)
 		console.log(maxLong);
 		console.log(minLat);
