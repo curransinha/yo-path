@@ -11,19 +11,20 @@
         padding: 0px
       }
       #header-holder { margin: 0; padding: 0;
-			font-size: 20px;
+			font-size: 15px;
+			background: #8E44AD;
 			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			font-weight: lighter;
 			text-align: center;
-			padding: 40px;
+			padding: 10px;
 			color: #333;
+			list-style-type: none;
 			-webkit-font-smoothing: antialiased;
 			text-rendering:optimizelegibility;}
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
 		function initialize() {
-		var mainArray = [[20,25],[23,25],[25,27],[24,28],[15,15]]
+		var mainArray = {{main}}
 		var maxLat = -1000
 		var maxLong = -1000
 		var minLat = 1000
@@ -34,9 +35,9 @@
 			 if(mainArray[i][0]>maxLat)
 				maxLat = mainArray[i][0]
 			if(mainArray[i][1]<minLong)
-				minLat = mainArray[i][1]
+				minLong = mainArray[i][1]
 			if(mainArray[i][1]>maxLong)
-				maxLat = mainArray[i][1]
+				maxLong = mainArray[i][1]
 		}
 		var centerLat = ((maxLat + minLat)/2)
 		var centerLong = ((maxLong + minLong)/2)
@@ -105,10 +106,9 @@
   <body>
   	<div id = "header-holder">
   	<h1>Yo Path</h1>
-  		<ul>
-  			<li>Start Time: {{start}}</li>
-  			<li>End Time: {{end}}</li>
-  		</ul>
+  		<p>Start Time: {{start}}</p>
+  		<p>End Time: {{end}}</p>
+  		
 
   	</div>
     <div id="map-canvas"></div>

@@ -134,7 +134,7 @@ app.get('/yo-end', function(req, res) {
 				var url  =  "http://api.justyo.co/yo/";
 
 				request.post(url, { form:
-					{ 'api_token': 'fa5016ff-d499-4f25-be79-448c74832a94', 'username': 'endpath', 'link':'http://yo-path.herokuapp.com/path/'+seq}}), function(err, response, body) {
+					{ 'api_token': 'fa5016ff-d499-4f25-be79-448c74832a94', 'username': 'endpath', 'link':'http://yo-path.herokuapp.com/path?pid='+seq}}), function(err, response, body) {
 		}
 			}
 				
@@ -160,7 +160,8 @@ app.get('/path', function(req, res) {
 	}
 	var pid = req.query.pid;
 
-	db.collection('paths').findOne({ _id : pid }, function(err, result) {
+	db.collection('paths').findOne({ "_id" : pid }, function(err, result) {
+		console.log(result);
 		if (err) {
 			console.log(err);
 			res.writeHead(200, {"Content-type" : "text/plain"});
@@ -174,6 +175,14 @@ app.get('/path', function(req, res) {
 				end: result.time[1],
 				user: user
                         });
+		} else {
+			res.render('index', {
+				main: "",
+				start: "",
+				end: "",
+				user: "" 
+                        });
+
 		}
 	});
 
