@@ -1,6 +1,6 @@
 var express = require('express');
 var hogan = require('hogan-express');
-
+var path = require('path');
 var app = express();
 
 var http = require('http').createServer(app);
@@ -9,6 +9,7 @@ app.set('view engine', 'html');
 app.set('layout', 'layout');
 app.engine('html', hogan);
 app.set('views', __dirname + '/views');
+app.use(express.static(path.join(__dirname,'public')));
 
 var uri = "mongodb://hackprinceton:yohackathon@dogen.mongohq.com:10088/yo-path"
 var db = require('mongojs')(uri);
