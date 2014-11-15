@@ -1,0 +1,10 @@
+{
+	"name": "yo-path",
+	"description": "Yo app that allows you to plot a map path",
+	"version": "0.0.1",
+	"dependencies": {
+		"express": "latest",
+		"mongojs": "latest",
+		"hogan-express": "latest"
+	}
+}
