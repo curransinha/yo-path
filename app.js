@@ -174,10 +174,6 @@ app.get('/path', function(req, res) {
 				end: result.time[1],
 				user: user
                         });
-			console.log(result);
-			res.writeHead(200, {"Content-type" : "text/plain"});
-			res.write(JSON.stringify(result));
-			res.end();
 		}
 	});
 
