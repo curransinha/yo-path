@@ -73,6 +73,7 @@ header {
 #map-canvas {
 	height: 70%;
 	border-top: 8px solid #F1C40F;
+	border-bottom: 4px solid #F1C40F;
 }
 
 .left {
@@ -80,6 +81,18 @@ header {
 }
 .right {
 	float: right;
+}
+
+footer {
+	padding: 10px 0;
+	text-align: center;
+}
+
+footer a {
+	color: #9B59B6;
+}
+footer a:hover {
+	text-decoration: none;
 }
 
 </style>
@@ -107,5 +120,8 @@ window.pts = {{main}};
   	</section>
 
 	<section id="map-canvas"></section>
+	<footer>
+	Made for <a href="http://hackprinceton.com">HackPrinceton Fall 2014</a>.  <a href="mailto:&#108;&#101;&#111;&#110;&#064;&#108;&#122;&#097;&#114;&#117;&#118;&#105;&#110;&#115;&#107;&#121;&#046;&#099;&#111;&#109;?subject=Yo Path">Report a bug</a>.
+	</footer>
 </body>
 </html>
