@@ -66,12 +66,25 @@ header#index {
 ul#reg {
 	list-style-type: circle;
 	margin: 0 0 10px 30px;
+	width: 100%;
+}
+
+#inner {
+	margin: 0 auto;
+	width: 80%;
+	line-height: 1.6em;
 }
 #data span {
 	display: inline-block;
 	min-width: 120px;
 	color: #34495E;
 	font-weight: bold;
+}
+
+em {
+	color: #34495E;
+	font-weight: bold;
+	font-style: normal;
 }
 
 #map-canvas {
