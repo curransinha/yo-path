@@ -135,6 +135,7 @@ footer a:hover {
 		width: 100%;
 	}
 	#data span {
-		min-width: none;
+		min-width: 100%;
+		display: block;
 	}
 }
