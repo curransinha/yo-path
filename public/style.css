@@ -113,7 +113,9 @@ a:hover {
 	text-decoration: none;
 }
 
-
+p a {
+	font-weight: bold;
+}
 
 @keyframes cfFadeInOut {
   0% {
