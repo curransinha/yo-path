@@ -105,10 +105,11 @@ footer {
 	text-align: center;
 }
 
-footer a {
+a {
 	color: #9B59B6;
+	text-decoration: none;
 }
-footer a:hover {
+a:hover {
 	text-decoration: none;
 }
 
