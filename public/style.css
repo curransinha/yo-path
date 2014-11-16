@@ -121,4 +121,8 @@ footer a:hover {
 	h1 {
 		font-size: 12vw !important;
 	}
+
+	.right, .right {
+		float: none;
+	}
 }
