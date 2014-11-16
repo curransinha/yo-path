@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Yo Path</title>
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-      #header-holder { margin: 0; padding: 0;
-			font-size: 15px;
-			background: #8E44AD;
-			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			text-align: center;
-			padding: 10px;
-			color: #333;
-			list-style-type: none;
-			-webkit-font-smoothing: antialiased;
-			text-rendering:optimizelegibility;}
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>Yo Path</title>
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<style>
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Montserrat', sans-serif;
+	line-height: 1.5em;
+	text-align: center;
+}
+
+
+h1 {
+	font-size: 89px;
+	font-weight: bold;
+	color: #8E44AD;
+}
+
+#header-holder {
+margin: 0;
+padding: 0;
+font-size: 15px;
+text-align: center;
+padding: 10px;
+color: #333;
+list-style-type: none;
+-webkit-font-smoothing: antialiased;
+text-rendering:optimizelegibility;
+}
+
+
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>

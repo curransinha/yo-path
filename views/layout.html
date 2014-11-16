@@ -1,42 +1,110 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Yo {{user}}! Here's your path.</title>
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-      header { margin: 0; padding: 0;
-			font-size: 15px;
-			background: #8E44AD;
-			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			text-align: center;
-			padding: 10px;
-			color: #333;
-			list-style-type: none;
-			-webkit-font-smoothing: antialiased;
-			text-rendering:optimizelegibility;
-			}
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script type="text/javascript">
-    	window.pts = {{main}};
-	</script>
-    <script src="script.js"></script>
-  </head>
- <body>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<title>Yo {{user}}! Here's your path.</title>
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<style type="text/css">
+
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+}
+
+
+h1 {
+	font-size: 100px;
+	font-weight: bold;
+	color: #fff;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+
+h2 {
+	font-size: 40px;
+	font-weight: bold;
+	color: #ccc;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background: #8E44AD;
+	padding: 20px 0;
+}
+
+#data {
+	font-size: 25px;
+	padding: 20px 0;
+	text-align: left;
+	width: 85%;
+	margin: 0 auto;
+}
+
+#data ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 50%;
+	text-align: center;
+}
+
+#data li {
+	padding: 0;
+	text-align: left;
+}
+
+.left li {
+	margin: 0 0 0 auto;
+	width: 80%;
+}
+
+#data span {
+	display: inline-block;
+	min-width: 120px;
+	color: #34495E;
+	font-weight: bold;
+}
+
+#map-canvas {
+	height: 70%;
+	border-top: 8px solid #F1C40F;
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script type="text/javascript">
+window.pts = {{main}};
+</script>
+<script src="script.js"></script>
+</head>
+<body>
 	<header>
-  	<h1>Yo <span>{{user}}</span>! Here's your path.</h1>
-	<ul>
+  	<h1>Yo, {{user}}!</h1>
+	<h2>Here's your path.</h2>
+	</header>
+	<section id="data">
+	<ul class="left">
 		<li><span>Started:</span> {{start}}</li>
 		<li><span>Finished:</span> {{end}}</li>
-		<li><span>Time Elapsed:</span> {{elapsed}}</li>
 	</ul>
-  	</header>	
+	<ul class="right">
+		<li><span>Time Elapsed:</span> {{elapsed}}</li>
+		<li><span>Distance Travelled:</span> {{traveled}}</li>
+	</ul>
+	<br clear="both">
+  	</section>
 
 	<section id="map-canvas"></section>
 </body>

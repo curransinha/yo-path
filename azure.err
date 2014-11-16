@@ -1,0 +1,28 @@
+Sat Nov 15 2014 20:18:07 GMT-0500 (EST):
+{ [Error: The password parameter is required.]
+  stack: [Getter/Setter],
+  __frame: 
+   { name: 'getSubscriptions',
+     line: 23,
+     file: '/usr/local/lib/node_modules/azure-cli/lib/util/profile/subscriptionUtils._js',
+     prev: 
+      { name: '__1',
+        line: 42,
+        file: '/usr/local/lib/node_modules/azure-cli/lib/commands/login._js',
+        prev: undefined,
+        active: false,
+        offset: 48,
+        col: 31 },
+     active: false,
+     offset: 1,
+     col: 20 },
+  rawStack: [Getter] }
+Error: The password parameter is required.
+    at Object.argumentValidation.validateStringParameter (/usr/local/lib/node_modules/azure-cli/node_modules/adal-node/lib/argument.js:34:13)
+    at AuthenticationContext.acquireTokenWithUsernamePassword (/usr/local/lib/node_modules/azure-cli/node_modules/adal-node/lib/authentication-context.js:240:14)
+    at Object.acquireToken (/usr/local/lib/node_modules/azure-cli/lib/util/authentication/adalAuth.js:215:11)
+    at Environment._.extend.acquireToken (/usr/local/lib/node_modules/azure-cli/lib/util/profile/environment.js:192:14)
+    at getSubscriptions (/usr/local/lib/node_modules/azure-cli/lib/util/profile/subscriptionUtils._js:24:24)
+    at getSubscriptions (/usr/local/lib/node_modules/azure-cli/lib/util/profile/subscriptionUtils._js:24:20)
+    at __1 (/usr/local/lib/node_modules/azure-cli/lib/commands/login._js:90:31)
+

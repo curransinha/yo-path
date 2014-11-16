@@ -199,7 +199,7 @@ app.get('/path', function(req, res) {
 			// Finally how many seconds left after removing days, hours and minutes.
 			var esecs = Math.floor((elapsed_t - (edays * 86400 ) - (ehours *3600 ) - (eminutes*60)))
 
-			elapsed_t = (edays>0 ? (edays + " days, ") : "") + (ehours>0 ? (ehours + " hours, ") : "") + eminutes + " minutes " + " and " + esecs + " seconds";
+			elapsed_t = (edays>0 ? (edays + " days, ") : "") + (ehours>0 ? (ehours + " hours, ") : "") + eminutes + " min " + " and " + esecs + " sec";
 
 			res.render('layout', {
 				pid: result._id,
