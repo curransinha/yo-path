@@ -111,3 +111,14 @@ footer a {
 footer a:hover {
 	text-decoration: none;
 }
+
+@media (max-width : 960px) {
+
+	html {
+		-webkit-text-size-adjust: none;
+	}
+
+	h1 {
+		font-size: 12vw !important;
+	}
+}
