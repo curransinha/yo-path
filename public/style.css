@@ -111,3 +111,30 @@ footer a {
 footer a:hover {
 	text-decoration: none;
 }
+
+@media (max-width : 960px) {
+
+	html {
+		-webkit-text-size-adjust: none;
+	}
+
+	h1 {
+		font-size: 14vw !important;
+	}
+	h2, #data {
+		font-size: 12vw !important;
+	}
+
+	.right, .right {
+		float: none;
+	}
+	.left li {
+		width: 100%;
+	}
+	#data ul {
+		width: 100%;
+	}
+	#data span {
+		min-width: 0;
+	}
+}
