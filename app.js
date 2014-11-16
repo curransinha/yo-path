@@ -220,4 +220,8 @@ app.get('/path', function(req, res) {
 
 });
 
+app.use("/", function(req, res) {
+	res.render('index');
+});
+
 http.listen(process.env.PORT || 8000);
