@@ -6,8 +6,9 @@ var app = express();
 var http = require('http').createServer(app);
 
 app.set('view engine', 'html');
-app.set('layout', 'layout');
+app.set('view options', { layout: false});
 app.engine('html', hogan);
+
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname,'public')));
 
@@ -169,12 +170,13 @@ app.get('/path', function(req, res) {
 	console.log("trying pid = " + pid)
 	db.collection('paths').findOne({ _id: parseInt(pid) }, function(err, result) {
 		console.log(result);
-		if (err) {
+		if (err || result == null) {
 			console.log(err);
 			res.writeHead(200, {"Content-type" : "text/plain"});
 			res.write("No result found\n");
 			res.end();
 			return;
+
 		} else if (result != null) {
 			var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 
@@ -201,7 +203,7 @@ app.get('/path', function(req, res) {
 
 			elapsed_t = (edays>0 ? (edays + " days, ") : "") + (ehours>0 ? (ehours + " hours, ") : "") + eminutes + " min " + " and " + esecs + " sec";
 
-			res.render('layout', {
+			res.render('path', {
 				pid: result._id,
 				main: "["+result.route+"]",
 				start: start_t,
@@ -209,14 +211,6 @@ app.get('/path', function(req, res) {
 				elapsed: elapsed_t,
 				user: result.user
                         });
-		} else {
-			res.render('layout', {
-				main: "[]",
-				start: "",
-				end: "",
-				user: "" 
-                        });
-
 		}
 	});
 
