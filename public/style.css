@@ -168,7 +168,7 @@ animation-direction: alternate;
 	#data span {
 		min-width: 0;
 	}
-	div#left {
+	#cf {
 		display: none;
 		margin: 0;
 	}
