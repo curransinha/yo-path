@@ -1,0 +1,87 @@
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+}
+
+
+h1 {
+	font-size: 100px;
+	font-weight: bold;
+	color: #fff;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+
+h2 {
+	font-size: 40px;
+	font-weight: bold;
+	color: #ccc;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background: #8E44AD;
+	padding: 20px 0;
+}
+
+#data {
+	font-size: 1.4em;
+	padding: 20px 0;
+	text-align: left;
+	width: 85%;
+	margin: 0 auto;
+}
+
+#data ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 50%;
+	text-align: center;
+}
+
+#data li {
+	padding: 0;
+	text-align: left;
+}
+
+.left li {
+	margin: 0 auto;
+	width: 80%;
+}
+
+#data span {
+	display: inline-block;
+	min-width: 120px;
+	color: #34495E;
+	font-weight: bold;
+}
+
+#map-canvas {
+	height: 70%;
+	border-top: 8px solid #F1C40F;
+	border-bottom: 4px solid #F1C40F;
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+footer {
+	padding: 10px 0;
+	text-align: center;
+}
+
+footer a {
+	color: #9B59B6;
+}
+footer a:hover {
+	text-decoration: none;
+}
