@@ -122,10 +122,10 @@ footer a:hover {
 		font-size: 14vw !important;
 	}
 	h2 {
-		font-size: 88888888
+		font-size: 8vw !important;
 	}
 	#data {
-		font-size: 4vw !important
+		font-size: 4vw !important;
 	}
 	.right, .right {
 		float: none;
