@@ -206,7 +206,7 @@ app.get('/path', function(req, res) {
 			// After days and hours , how many minutes are left
 			var eminutes = Math.floor((elapsed_t - (edays * 8640000 ) - (ehours *360000 ))/6000)
 			// Finally how many seconds left after removing days, hours and minutes.
-			var esecs = Math.floor((elapsed_t - (edays * 86400 ) - (ehours *3600 ) - (eminutes*60)))/100
+			var esecs = Math.floor((elapsed_t - (edays * 8640000 ) - (ehours *360000 ) - (eminutes*6000)))/100
 
 			elapsed_t = (edays>0 ? (edays + " days, ") : "") + (ehours>0 ? (ehours + " hours, ") : "") + eminutes + " min " + " and " + esecs + " sec";
 
