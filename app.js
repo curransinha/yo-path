@@ -145,7 +145,7 @@ app.get('/yo-end', function(req, res) {
 				var url  =  "http://api.justyo.co/yo/";
 
 				request.post(url, { form:
-					{ 'api_token': 'fa5016ff-d499-4f25-be79-448c74832a94', 'username': user, 'link':'http://yo-path.herokuapp.com/path?pid='+seq}}), function(err, response, body) {
+					{ 'api_token': 'fa5016ff-d499-4f25-be79-448c74832a94', 'username': user, 'link':'http://yo-path.azurewebsites.net/path?pid='+seq}}), function(err, response, body) {
 		}
 			}
 				
