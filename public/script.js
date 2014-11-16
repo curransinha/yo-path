@@ -31,12 +31,12 @@ function initialize() {
 	      title: 'Plot ' + (i/2)
 	  });
 	  var ih = i/2
-	  totalDistance += distBetween(markerArray[ih], markerArray[ih-1])
+	  totalDistance += distBetween(markerArray[ih], markerArray[ih-1], "K")
 	}
 	markerArray.push(endPos)
 	var lengthOfMarker = markerArray.length
 	alert(markerArray[lengthOfMarker-1])
-	totalDistance += distBetween(markerArray[lengthOfMarker-1], markerArray[lengthOfMarker-2])
+	totalDistance += distBetween(markerArray[lengthOfMarker-1], markerArray[lengthOfMarker-2], "K")
 	document.getElementById("travelled").innerHTML += totalDistance;
 	alert(totalDistance)
 	
@@ -61,31 +61,23 @@ function initialize() {
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 
-	var distBetween = function(pos1,pos2){
-		function toRadians(degree) {
-			return degree * 3.14159 / 180.0
-		}
+	var distBetween = function distance(pos1, pos2, unit) {
+	var lat1 = pos1.lat()
+	var lat2 = pos2.lat()
+	var long1 = pos1.lono()
+	var long2 = pos2.lon()
+    var radlat1 = Math.PI * lat1/180
+    var radlat2 = Math.PI * lat2/180
+    var radlon1 = Math.PI * lon1/180
+    var radlon2 = Math.PI * lon2/180
+    var theta = lon1-lon2
+    var radtheta = Math.PI * theta/180
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    dist = Math.acos(dist)
+    dist = dist * 180/Math.PI
+    dist = dist * 60 * 1.1515
+    if (unit=="K") { dist = dist * 1.609344 }
+    if (unit=="N") { dist = dist * 0.8684 }
+    return dist
+}
 
-		var R = 6371; // km
-		console.log(pos1)
-		var lat1 = pos1.k;
-		var lon1 = pos1.B;
-		var lat2 = pos2.k;
-		var lon2 = pos2.B;
-		console.log(lat1 + " " + lon1 + " " +lat2 + " " +lon2);
-
-		var φ1 = toRadians(lat1);
-		var φ2 = toRadians(lat2);
-		var Δφ = toRadians(lat2-lat1);
-		var Δλ = toRadians(lon2-lon1);
-		console.log(φ1);
-
-		var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-		        Math.cos(φ1) * Math.cos(φ2) *
-		        Math.sin(Δλ/2) * Math.sin(Δλ/2);
-		console.log("a="+a);
-		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-		console.log("c="+c);
-		var d = R * c;
-		return d*3280.84;
-	}
