@@ -23,7 +23,7 @@ var routes = {};
 
 // Date() array
 // Key: username
-// Value: [time start, time end]
+// Value: [time start_t, time end]
 var times = {};
 
 app.get('/yo-start', function(req, res) {
@@ -80,7 +80,10 @@ app.get('/yo-plot', function(req, res) {
 	res.end();
 });
 
-
+// app.get('findById') function(req,res) {
+// 	var user = req.query.username;
+// 	for 
+// }
 app.get('/yo-end', function(req, res) {
 	var user = req.query.username;
 	var loc = req.query.location;
@@ -214,6 +217,7 @@ app.get('/path', function(req, res) {
 				end: end_t,
 				elapsed: elapsed_t,
 				user: result.user
+				traveled: elapsed_t
                         });
 		}
 	});
