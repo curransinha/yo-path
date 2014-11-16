@@ -1,26 +1,8 @@
 function initialize() {
 	console.log("h");
 	var mainArray = window.pts;
-	var maxLat = -1000
-	var maxLong = -1000
-	var minLat = 1000
-	var minLong = 1000
-	for (var i=0; i<(mainArray.length)-1; i++){
-		if(mainArray[i]<minLat)
-			minLat = mainArray[i]
-		 if(mainArray[i]>maxLat)
-			maxLat = mainArray[i]
-		if(mainArray[i]<minLong)
-			minLong = mainArray[i+1]
-		if(mainArray[i]>maxLong)
-			maxLong = mainArray[i+1]
-	}
 	var centerLat = mainArray[0]//((maxLat + minLat)/2)
 	var centerLong = mainArray[1]//((maxLong + minLong)/2)
-	console.log(maxLat)
-	console.log(maxLong);
-	console.log(minLat);
-	console.log(minLong);
 	var myLatlng = new google.maps.LatLng(centerLat,centerLong);
 	  var mapOptions = {
 	    zoom: 12,
@@ -41,38 +23,35 @@ function initialize() {
   		scale: 10
 			},
 	      map: map,
-	      title: 'Hello World!'
+	      title: 'Start'
 	  });
-	for (var i=2; i<(mainArray.length)-3; i= i+2){
-		if(mainArray[i]<minLat)
-			minLat = mainArray[i]
-		else if(mainArray[i]>maxLat)
-			maxLat = mainArray[i]
-		if(mainArray[i+1]<minLong)
-			minLat = mainArray[i+1]
-		else if(mainArray[i+1]>maxLong)
-			maxLat = mainArray[i+1]
+	var totalDistance;
+	for (var i=2; i<(mainArray.length)-2; i= i+2){
 		var location = new google.maps.LatLng(mainArray[i],mainArray[i+1])
 		markerArray.push(location)
 		new google.maps.Marker({
 	      position: location,
 	      map: map,
-	      title: 'Hello World!'
+	      title: 'Plot ' + (i/2)
 	  });
+		var ih = i/2
+		totalDistance += distBetween(markerArray[ih], markerArray[ih-1])
 	}
 	markerArray.push(endPos)
+	var lengthOfMarker = markerArray.length
+		totalDistance += distBetween(markerArray[lengthOfMarker],markerArray[lengthOfMarker-1])
 	new google.maps.Marker({
 	      position: endPos,
 	      map: map,
-	      title: 'Hello World!'
+	      title: 'End'
 	  });
 
-	  var flightPlanCoordinates = markerArray
+	var flightPlanCoordinates = markerArray
   	var flightPath = new google.maps.Polyline({
     path: flightPlanCoordinates,
     geodesic: true,
     strokeColor: '#FF0000',
-    strokeOpacity: 1.0,
+    strokeOpacity: .9,
     strokeWeight: 2
   });
 
@@ -80,3 +59,24 @@ function initialize() {
 	}
 
 	google.maps.event.addDomListener(window, 'load', initialize);
+
+
+	var distBetween = function(pos1,pos2){
+		var R = 6371; // km
+		lat1 = pos1.lat();
+		lon1 = pos1.lng();
+		lat2 = pos2.lat();
+		lon1 = pos2.lng();
+		var φ1 = lat1.toRadians();
+		var φ2 = lat2.toRadians();
+		var Δφ = (lat2-lat1).toRadians();
+		var Δλ = (lon2-lon1).toRadians();
+
+		var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+		        Math.cos(φ1) * Math.cos(φ2) *
+		        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+		var d = R * c;
+		return d*3280.84;
+	}
