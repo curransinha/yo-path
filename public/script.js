@@ -1,5 +1,25 @@
 function initialize() {
-	console.log("h");
+	var distBetween = function distance(pos1, pos2, unit) {
+		var lat1 = pos1.lat()
+		var lat2 = pos2.lat()
+		var lon1 = pos1.lng()
+		var lon2 = pos2.lng()
+		var radlat1 = Math.PI * lat1/180
+		var radlat2 = Math.PI * lat2/180
+		var radlon1 = Math.PI * lon1/180
+		var radlon2 = Math.PI * lon2/180
+		var theta = lon1-lon2
+		var radtheta = Math.PI * theta/180
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		dist = Math.acos(dist)
+		dist = dist * 180/Math.PI
+		dist = dist * 60 * 1.1515
+		if (unit=="K") { dist = dist * 1.609344 }
+		if (unit=="N") { dist = dist * 0.8684 }
+		console.log(dist)
+		return dist
+	}
+
 	var mainArray = window.pts;
 	var centerLat = mainArray[0]//((maxLat + minLat)/2)
 	var centerLong = mainArray[1]//((maxLong + minLong)/2)
@@ -21,7 +41,7 @@ function initialize() {
 	      map: map,
 	      title: 'Start'
 	  });
-	var totalDistance;
+	var totalDistance = 0.0;
 	for (var i=2; i<(mainArray.length)-2; i= i+2){
 		var location = new google.maps.LatLng(mainArray[i],mainArray[i+1])
 		markerArray.push(location)
@@ -34,11 +54,12 @@ function initialize() {
 	  totalDistance += distBetween(markerArray[ih], markerArray[ih-1], "K")
 	}
 	markerArray.push(endPos)
-	var lengthOfMarker = markerArray.length
-	alert(markerArray[lengthOfMarker-1])
-	totalDistance += distBetween(markerArray[lengthOfMarker-1], markerArray[lengthOfMarker-2], "K")
-	document.getElementById("travelled").innerHTML += totalDistance;
-	alert(totalDistance)
+	var lengthOfMarker = markerArray.length;
+	totalDistance += distBetween(markerArray[lengthOfMarker-1], markerArray[lengthOfMarker-2], "K");
+	
+//	BigDecimal bd = new BigDecimal(totalDistance).setScale(5, RoundingMode.HALF_EVEN);
+//	document.getElementById("travelled").innerHTML += bd.doubleValue() + " feet";
+	document.getElementById("travelled").innerHTML += ("" +totalDistance).substring(0, 6) + " feet";
 	
 	new google.maps.Marker({
 	      position: endPos,
@@ -60,24 +81,4 @@ function initialize() {
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 
-
-	var distBetween = function distance(pos1, pos2, unit) {
-	var lat1 = pos1.lat()
-	var lat2 = pos2.lat()
-	var long1 = pos1.lono()
-	var long2 = pos2.lon()
-    var radlat1 = Math.PI * lat1/180
-    var radlat2 = Math.PI * lat2/180
-    var radlon1 = Math.PI * lon1/180
-    var radlon2 = Math.PI * lon2/180
-    var theta = lon1-lon2
-    var radtheta = Math.PI * theta/180
-    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-    dist = Math.acos(dist)
-    dist = dist * 180/Math.PI
-    dist = dist * 60 * 1.1515
-    if (unit=="K") { dist = dist * 1.609344 }
-    if (unit=="N") { dist = dist * 0.8684 }
-    return dist
-}
 
