@@ -112,6 +112,35 @@ footer a:hover {
 	text-decoration: none;
 }
 
+
+
+@keyframes cfFadeInOut {
+  0% {
+  opacity:1;
+}
+45% {
+opacity:1;
+}
+55% {
+opacity:0;
+}
+100% {
+opacity:0;
+}
+}
+
+#cf img.top {
+animation-name: cfFadeInOut;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-duration: 5s;
+animation-direction: alternate;
+}
+
+#cf {
+	margin-left: 20px;
+}
+
 @media (max-width : 960px) {
 
 	html {
@@ -138,5 +167,9 @@ footer a:hover {
 	}
 	#data span {
 		min-width: 0;
+	}
+	div#left {
+		display: none;
+		margin: 0;
 	}
 }
