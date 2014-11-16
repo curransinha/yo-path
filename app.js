@@ -217,7 +217,6 @@ app.get('/path', function(req, res) {
 				end: end_t,
 				elapsed: elapsed_t,
 				user: result.user
-				traveled: elapsed_t
                         });
 		}
 	});

@@ -40,6 +40,7 @@ function initialize() {
 	markerArray.push(endPos)
 	var lengthOfMarker = markerArray.length
 		totalDistance += distBetween(markerArray[lengthOfMarker],markerArray[lengthOfMarker-1])
+		document.getElementById("travelled").innerHTML += totalDistance;
 	new google.maps.Marker({
 	      position: endPos,
 	      map: map,
