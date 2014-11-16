@@ -186,20 +186,24 @@ app.get('/path', function(req, res) {
                 	hours0 = (hours0 == '00') ? 12 : hours0;
         		
 			var hours1 = (result.time[1].getHours() > 12) ? result.time[1].getHours()-12 : result.time[1].getHours();
-                	hours1 = (hours1 == '00') ? 12 : hours1;
+                hours1 = (hours1 == '00') ? 12 : hours1;
     
-                	var start_t = hours0 + ":" + (result.time[0].getMinutes()<10? "0" : "") + result.time[0].getMinutes() + suffix + " on " + months[result.time[0].getMonth()] + " " + result.time[0].getDate() + ", " + result.time[0].getFullYear()
-			var end_t = hours1 + ":" + (result.time[1].getMinutes()<10? "0" : "") + result.time[0].getMinutes() + suffix + " on " + months[result.time[1].getMonth()] + " " + result.time[1].getDate() + ", " + result.time[1].getFullYear()
+            var start_t = hours0 + ":" + (result.time[0].getMinutes()<10? "0" : "") + result.time[0].getMinutes() + suffix + " on " + months[result.time[0].getMonth()] + " " + result.time[0].getDate() + ", " + result.time[0].getFullYear();
+			var end_t = hours1 + ":" + (result.time[1].getMinutes()<10? "0" : "") + result.time[1].getMinutes() + suffix + " on " + months[result.time[1].getMonth()] + " " + result.time[1].getDate() + ", " + result.time[1].getFullYear();
 
-			var elapsed_t = new Date(result.time[1] - result.time[0]);
+			var compStart = result.time[0].getTime();
+			var compEnd = result.time[1].getTime();
+
+
+			var elapsed_t = compEnd-compStart;
 			//elapsed_t = elapsed_t.get	
-			var edays=Math.floor(elapsed_t / 86400);
+			var edays=Math.floor(elapsed_t / 8640000);
 			// After deducting the days calculate the number of hours left
-			var ehours = Math.floor((elapsed_t - (edays * 86400))/3600)
+			var ehours = Math.floor((elapsed_t - (edays * 8640000))/360000)
 			// After days and hours , how many minutes are left
-			var eminutes = Math.floor((elapsed_t - (edays * 86400 ) - (ehours *3600 ))/60)
+			var eminutes = Math.floor((elapsed_t - (edays * 8640000 ) - (ehours *360000 ))/6000)
 			// Finally how many seconds left after removing days, hours and minutes.
-			var esecs = Math.floor((elapsed_t - (edays * 86400 ) - (ehours *3600 ) - (eminutes*60)))
+			var esecs = Math.floor((elapsed_t - (edays * 86400 ) - (ehours *3600 ) - (eminutes*60)))/100
 
 			elapsed_t = (edays>0 ? (edays + " days, ") : "") + (ehours>0 ? (ehours + " hours, ") : "") + eminutes + " min " + " and " + esecs + " sec";
 
