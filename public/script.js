@@ -18,10 +18,6 @@ function initialize() {
 	markerArray.push(startPos);
 	new google.maps.Marker({
 	      position: startPos,
-		icon: {
-  		path: google.maps.SymbolPath.CIRCLE,
-  		scale: 10
-			},
 	      map: map,
 	      title: 'Start'
 	  });
@@ -67,7 +63,7 @@ function initialize() {
 		lat1 = pos1.lat();
 		lon1 = pos1.lng();
 		lat2 = pos2.lat();
-		lon1 = pos2.lng();
+		lon2 = pos2.lng();
 		var φ1 = lat1.toRadians();
 		var φ2 = lat2.toRadians();
 		var Δφ = (lat2-lat1).toRadians();
