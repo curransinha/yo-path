@@ -121,10 +121,12 @@ footer a:hover {
 	h1 {
 		font-size: 14vw !important;
 	}
-	h2, #data {
-		font-size: 12vw !important;
+	h2 {
+		font-size: 10vw !important;
 	}
-
+	#data {
+		font-size: 8vw !important
+	}
 	.right, .right {
 		float: none;
 	}
